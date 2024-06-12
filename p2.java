@@ -1,21 +1,22 @@
+package snippet;
 import java.util.Scanner;
+
 public class P2 {
-    public static void main(String[]args){
-        Scanner s = new Scanner(System.in);
-        System.out.print("输入整数：");
-        int a = s.nextInt();
-        try{
-            divide(a);
-        }catch (Exception e){
-            System.out.println("捕获异常为："+e.getMessage());
-        }
+    int input_value = 0;
+    Scanner sc = new Scanner(System.in);
+
+    public int judge() {
+        System.out.println("请输入一个整数");
+        input_value = sc.nextInt();
+        return handle_value(input_value);
     }
-    public static void divide(int a)throws Exception{
-        if (a==0){
-            throw new Exception("输出整数为0，请重新输入");
-        }
-        else{
-            System.out.println("输入为："+a);
+
+    public int handle_value(int num) {
+        if (num <= 0) {
+            System.out.println("error please input again");
+            return handle_value(sc.nextInt()); 
+        } else {
+            return num;
         }
     }
 }
