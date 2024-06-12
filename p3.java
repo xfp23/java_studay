@@ -1,18 +1,15 @@
-import java.util.Map;
+package snippet;
 import java.util.*;
+
 public class P3 {
-    public static void main(String[]args){
-        Map map = new HashMap();
-        map.put("No 1","Rank A");
-        map.put("No 2","Rank B");
-        map.put("No 3","Rank C");
-        Set entrySet=map.entrySet();
-        Iterator it =entrySet.iterator();
-        while (it.hasNext()) {
-            Map.Entry entry = (Map.Entry) (it.next());
-            Object key = entry.getKey();
-            Object value = entry.getValue();
-            System.out.println(key + ":" + value);
-        }
+    static Map<String, String> map = new HashMap<>();
+	 static String[] KEY = new String[]{"NO 1", "NO 2", "NO 3"};
+    static String[] VALUE = new String[] {"rank a","rank b","rank c"};
+    public static void print_json() {
+    	for(int i = 0; i < 3; i++)
+    	{
+    		map.put(KEY[i], VALUE[i]);
+    		System.out.println(KEY[i] + ":" + map.get(KEY[i]));
+    	}
     }
 }
