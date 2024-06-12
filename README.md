@@ -68,22 +68,22 @@ String name = scanner.nextLine();
 System.out.println("Hello, " + name + "!");
 ```
 # 运算符
-算术运算符
-+：加法
--：减法
-*：乘法
-/：除法
-%：取模（取余数）
-赋值运算符
-=：赋值
-+=：加后赋值
--=：减后赋值
-*=：乘后赋值
-/=：除后赋值
-%=：取模后赋值
-自增自减运算符
-++：自增
---：自减
+**算术运算符**
+-- +：加法
+-- -：减法
+-- *：乘法
+-- /：除法
+-- %：取模（***取余数***）
+**赋值运算符**
+-- =：赋值
+-- +=：加后赋值
+-- -=：减后赋值
+-- *=：乘后赋值
+-- /=：除后赋值
+-- %=：取模后赋值
+-- 自增自减运算符
+-- ++：自增
+-- --：自减
 比较运算符
 ==：等于
 !=：不等于
@@ -176,4 +176,62 @@ int element = array[0]; // 获取数组第一个元素的值
 # static 关键字
 1. 静态 **方法**的特性
 属于类，而不是实例：静态方法属于类本身，而不是类的某个实例。你可以通过类名直接调用静态方法，而不需要创建类的对象。
-2.
+```java
+public class MyClass {
+    public static void myStaticMethod() {
+        System.out.println("This is a static method.");
+    }
+}
+
+// 调用静态方法
+MyClass.myStaticMethod();
+```
+2.只能访问静态成员：静态方法只能访问类中的静态变量和静态方法。它们不能直接访问实例变量或实例方法，因为实例变量和实例方法是属于某个具体对象的，而静态方法在调用时可能没有任何对象的上下文
+```java
+public class MyClass {
+    private static int staticVar = 10;
+    private int instanceVar = 20;
+
+    public static void staticMethod() {
+        System.out.println("Static variable: " + staticVar);
+        // System.out.println("Instance variable: " + instanceVar); // 错误：无法从静态上下文中访问实例变量
+    }
+
+    public void instanceMethod() {
+        System.out.println("Static variable: " + staticVar);
+        System.out.println("Instance variable: " + instanceVar);
+    }
+}
+```
+3.可以被类的实例方法调用：静态方法可以被类的实例方法调用，因为实例方法本身就是在某个对象的上下文中运行的，因而可以访问静态方法。
+```java
+public class MyClass {
+    private static int staticVar = 10;
+
+    public static void staticMethod() {
+        System.out.println("Static variable: " + staticVar);
+    }
+
+    public void instanceMethod() {
+        // 调用静态方法
+        staticMethod();
+    }
+}
+```
+
+***其他类中的调用***
+静态方法也可以被其他类的方法调用。调用方式依然是通过类名来调用，而不是通过实例。
+```java
+public class MyClass {
+    public static void staticMethod() {
+        System.out.println("This is a static method.");
+    }
+}
+
+public class AnotherClass {
+    public void callStaticMethod() {
+        // 调用MyClass中的静态方法
+        MyClass.staticMethod();
+    }
+}
+```
